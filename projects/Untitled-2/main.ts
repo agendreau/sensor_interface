@@ -1,0 +1,2 @@
+sensors.humidity()
+sensors.tempF()

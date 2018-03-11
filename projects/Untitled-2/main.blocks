@@ -1,0 +1,12 @@
+<xml xmlns="http://www.w3.org/1999/xhtml">
+  <variables></variables>
+  <block type="pxt-on-start" id="JT2jK}GTs[oDOSmxh;bR" x="0" y="0">
+    <statement name="HANDLER">
+      <block type="humid" id="PQkBddl%HYuv,u?wC^I/">
+        <next>
+          <block type="tempF" id="rvgIj:D2%1#=ywNhV-0v"></block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

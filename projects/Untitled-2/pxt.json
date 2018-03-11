@@ -1,0 +1,12 @@
+{
+    "name": "Sample 2",
+    "dependencies": {
+        "core": "*"
+    },
+    "description": "",
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md"
+    ]
+}
