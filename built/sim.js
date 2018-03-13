@@ -1,3 +1,38 @@
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __generator = (this && this.__generator) || function (thisArg, body) {
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    function verb(n) { return function (v) { return step([n, v]); }; }
+    function step(op) {
+        if (f) throw new TypeError("Generator is already executing.");
+        while (_) try {
+            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [0, t.value];
+            switch (op[0]) {
+                case 0: case 1: t = op; break;
+                case 4: _.label++; return { value: op[1], done: false };
+                case 5: _.label++; y = op[1]; op = [0]; continue;
+                case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                default:
+                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                    if (t[2]) _.ops.pop();
+                    _.trys.pop(); continue;
+            }
+            op = body.call(thisArg, _);
+        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+    }
+};
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -9,22 +44,46 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 /// <reference path="../libs/core/enums.d.ts"/>
+//import * as WebRequest from 'web-request';
 var pxsim;
+/// <reference path="../libs/core/enums.d.ts"/>
+//import * as WebRequest from 'web-request';
 (function (pxsim) {
     var sensors;
     (function (sensors) {
+        //import axios from '../node_modules/axios';
+        //var request = require('web-request')
         //% weight = 90
-        //% blockId=tempF block="Temperature %sampleRate"
+        //% blockId=tempF block="Temperature"
         function tempF() {
             pxsim.board().tempF.y += 1;
             pxsim.board().updateView();
         }
         sensors.tempF = tempF;
         //% weight = 85
-        //% blockId=humid block="Humidity %sampleRate"
-        function humidity() {
+        //% blockId=humid block="Humidity"
+        function humidityAsync() {
+            return __awaiter(this, void 0, void 0, function () {
+                var response, json;
+                return __generator(this, function (_a) {
+                    switch (_a.label) {
+                        case 0: return [4 /*yield*/, fetch('http://api.wunderground.com/api/8f5846f4c43e4050/conditions/q/CO/Denver.json')];
+                        case 1:
+                            response = _a.sent();
+                            return [4 /*yield*/, response.json()];
+                        case 2:
+                            json = _a.sent();
+                            pxsim.console.log(json.current_observation.temp_f);
+                            return [2 /*return*/];
+                    }
+                });
+            });
         }
-        sensors.humidity = humidity;
+        sensors.humidityAsync = humidityAsync;
+        /* fetch('http://www.google.com/').then(function(response) {
+             console.log(stringify(response)})*/
+        /*var result = await request.get('http://www.google.com/');
+        console.log(result.content);*/
         //% weight = 80
         //% blockId=pressure block="Pressure %sampleRate"
         function pressure() {
@@ -182,6 +241,7 @@ function logMsg(m) { console.log(m); }
         /*constructor() {
         }*/
         function Sprite(new_x, new_y) {
+            //import * as WebRequest from '../node_modules/web-request';
             /**
              * The X-coordiante
              */
@@ -198,28 +258,26 @@ function logMsg(m) { console.log(m); }
             this.angle = 90;
         }
         Sprite.prototype.foobar = function () { };
-        /*public gettemp(){
-
-            import request = require('request');
-
-            request.get('http://10.255.255.1', {timeout: 1500}, (err:any) => {
+        Sprite.prototype.gettemp = function () {
+            //var result = await WebRequest.get('http://www.google.com/')
+            //console.log(result.content)
+            //import request = require('request');
+            /*request.get('http://10.255.255.1', {timeout: 1500}, (err:any) => {
                 console.log(err.code === 'ETIMEDOUT');
                 // Set to `true` if the timeout was a connection timeout, `false` or
                 // `undefined` otherwise.
                 console.log(err.connect === true);
                 process.exit(0);
-            });
-                
-
- 
-
-        
-        }*/
+            });*/
+            //return Promise.delay(400)
+        };
         /**
          * Move the thing forward
          */
         //%
         Sprite.prototype.forwardAsync = function (steps) {
+            //var result = await WebRequest.get('http://www.google.com/');
+            //console.log(result.content);
             var deg = this.angle / 180 * Math.PI;
             this.x += Math.cos(deg) * steps * 10;
             this.y += Math.sin(deg) * steps * 10;
@@ -247,6 +305,7 @@ function logMsg(m) { console.log(m); }
 })(pxsim || (pxsim = {}));
 /// <reference path="../node_modules/pxt-core/built/pxtsim.d.ts"/>
 var pxsim;
+/// <reference path="../node_modules/pxt-core/built/pxtsim.d.ts"/>
 (function (pxsim) {
     /**
      * This function gets called each time the program restarts

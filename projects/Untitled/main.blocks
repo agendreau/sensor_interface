@@ -1,6 +1,6 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
   <variables></variables>
-  <block type="pxt-on-start" id="KS++Q!Q#,HiK4R%^ld5h" x="23" y="-22">
+  <block type="pxt-on-start" id="KS++Q!Q#,HiK4R%^ld5h" x="0" y="0">
     <statement name="HANDLER">
       <block type="connect" id="C8YH:{J4=B~t4(%3L2XY">
         <value name="Name">
@@ -19,29 +19,37 @@
               <block type="controls_repeat_ext" id=".CK20D_)oib2{l0uM]qJ">
                 <value name="TIMES">
                   <shadow type="math_whole_number" id="~cY}LF?)JKV;Y?[|inZ!">
-                    <field name="NUM">10</field>
+                    <field name="NUM">1</field>
                   </shadow>
                 </value>
                 <statement name="DO">
-                  <block type="tempF" id=".g::3gl@]Pdxsw0BhuUY">
+                  <block type="humid" id="yg#1#93EiJDmYnfd@T!8">
                     <next>
-                      <block type="humid" id="P2b7le)xik.v_1H@#dQ]">
+                      <block type="tempF" id="jz$}a9RxlE(P|!N]KrNh">
                         <next>
-                          <block type="led" id="fgwPg(Fdr|F79(^Msv0X">
+                          <block type="tempF" id=".g::3gl@]Pdxsw0BhuUY">
                             <next>
-                              <block type="sound" id="MUl^E,N?5jyc(U%t%uV[">
-                                <value name="howloud">
-                                  <shadow type="math_number" id="(sbac]XyZL(,4lB/i)ct">
-                                    <field name="NUM">100</field>
-                                  </shadow>
-                                </value>
+                              <block type="humid" id="P2b7le)xik.v_1H@#dQ]">
                                 <next>
-                                  <block type="device_pause" id=")Q2orBqHH$SrUt^w:Q8-">
-                                    <value name="pause">
-                                      <shadow type="math_number" id="{PZL#9{1A1z+T`doDcLb">
-                                        <field name="NUM">5000</field>
-                                      </shadow>
-                                    </value>
+                                  <block type="led" id="fgwPg(Fdr|F79(^Msv0X">
+                                    <next>
+                                      <block type="sound" id="MUl^E,N?5jyc(U%t%uV[">
+                                        <value name="howloud">
+                                          <shadow type="math_number" id="(sbac]XyZL(,4lB/i)ct">
+                                            <field name="NUM">100</field>
+                                          </shadow>
+                                        </value>
+                                        <next>
+                                          <block type="device_pause" id=")Q2orBqHH$SrUt^w:Q8-">
+                                            <value name="pause">
+                                              <shadow type="math_number" id="{PZL#9{1A1z+T`doDcLb">
+                                                <field name="NUM">5000</field>
+                                              </shadow>
+                                            </value>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
                                   </block>
                                 </next>
                               </block>

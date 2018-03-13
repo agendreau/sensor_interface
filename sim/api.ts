@@ -1,35 +1,53 @@
 /// <reference path="../libs/core/enums.d.ts"/>
 
+//import * as WebRequest from 'web-request';
+
+
 namespace pxsim.sensors {
+    //import axios from '../node_modules/axios';
+    //var request = require('web-request')
+    
 
     //% weight = 90
-    //% blockId=tempF block="Temperature %sampleRate"
+    //% blockId=tempF block="Temperature"
     export function tempF(){
         board().tempF.y+=1
         board().updateView();
 
     }
      //% weight = 85
-    //% blockId=humid block="Humidity %sampleRate"
-    export function humidity(){
-        
+    //% blockId=humid block="Humidity"
+    export async function humidityAsync(){
 
-    }
+    
+            const response = await fetch('http://api.wunderground.com/api/8f5846f4c43e4050/conditions/q/CO/Denver.json')
+        
+            const json = await response.json();
+        
+            console.log(json.current_observation.temp_f)
+        }
+       
+       /* fetch('http://www.google.com/').then(function(response) {
+            console.log(stringify(response)})*/
+        /*var result = await request.get('http://www.google.com/');
+        console.log(result.content);*/
+
+    
 
      //% weight = 80
-    //% blockId=pressure block="Pressure %sampleRate"
+    //% blockId=pressure block="Pressure"
     export function pressure(){
 
     }
 
      //% weight = 75
-    //% blockId=tvoc block="TVOC %sampleRate"
+    //% blockId=tvoc block="TVOC"
     export function tvoc(){
 
     }
 
      //% weight = 70
-    //% blockId=co2 block="CO2 %sampleRate"
+    //% blockId=co2 block="CO2"
     export function co2(){
 
     }
@@ -183,6 +201,11 @@ namespace pxsim {
 
 
     export class Sprite {
+
+        //import * as WebRequest from '../node_modules/web-request';
+
+        
+
         /**
          * The X-coordiante
          */
@@ -206,29 +229,39 @@ namespace pxsim {
         
         private foobar() {}
 
-        /*public gettemp(){
+        public gettemp(){
+            
+            
+            
 
-            import request = require('request');
 
-            request.get('http://10.255.255.1', {timeout: 1500}, (err:any) => {
+      
+            //var result = await WebRequest.get('http://www.google.com/')
+            //console.log(result.content)
+           //import request = require('request');
+
+            /*request.get('http://10.255.255.1', {timeout: 1500}, (err:any) => {
                 console.log(err.code === 'ETIMEDOUT');
                 // Set to `true` if the timeout was a connection timeout, `false` or
                 // `undefined` otherwise.
                 console.log(err.connect === true);
                 process.exit(0);
-            });
+            });*/
                 
 
  
-
+            //return Promise.delay(400)
         
-        }*/
+        }
 
         /**
          * Move the thing forward
          */
         //%
         public forwardAsync(steps: number) {
+
+            //var result = await WebRequest.get('http://www.google.com/');
+            //console.log(result.content);
             let deg = this.angle / 180 * Math.PI;
             this.x += Math.cos(deg) * steps * 10;
             this.y += Math.sin(deg) * steps * 10;

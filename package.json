@@ -36,7 +36,9 @@
     "@types/jquery": "3.2.16",
     "@types/marked": "0.3.0",
     "@types/node": "8.0.53",
-    "@types/request": "2.47.0"
+    "@types/request": "2.47.0",
+    "web-request": "1.0.7",
+    "axios": "0.18.0 "
   },
   "dependencies": {
     "pxt-core": "3.*"

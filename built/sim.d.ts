@@ -2,7 +2,7 @@
 /// <reference path="../node_modules/pxt-core/built/pxtsim.d.ts" />
 declare namespace pxsim.sensors {
     function tempF(): void;
-    function humidity(): void;
+    function humidityAsync(): Promise<void>;
     function pressure(): void;
     function tvoc(): void;
     function co2(): void;
@@ -71,6 +71,7 @@ declare namespace pxsim {
         angle: number;
         constructor(new_x: number, new_y: number);
         private foobar();
+        gettemp(): void;
         /**
          * Move the thing forward
          */

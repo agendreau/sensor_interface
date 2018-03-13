@@ -1,15 +1,21 @@
 // Auto-generated from simulator. Do not edit.
 declare namespace sensors {
+    //import axios from '../node_modules/axios';
+    //var request = require('web-request')
     //% weight = 90
-    //% blockId=tempF block="Temperature %sampleRate"
+    //% blockId=tempF block="Temperature"
     //% shim=sensors::tempF
     function tempF(): void;
 
     //% weight = 85
-    //% blockId=humid block="Humidity %sampleRate"
-    //% shim=sensors::humidity
+    //% blockId=humid block="Humidity"
+    //% shim=sensors::humidityAsync promise
     function humidity(): void;
 
+    /* fetch('http://www.google.com/').then(function(response) {
+    console.log(stringify(response)})*/
+    /*var result = await request.get('http://www.google.com/');
+    console.log(result.content);*/
     //% weight = 80
     //% blockId=pressure block="Pressure %sampleRate"
     //% shim=sensors::pressure
@@ -103,6 +109,7 @@ declare namespace console {
      */
     //%
     declare class Sprite {
+        //import * as WebRequest from '../node_modules/web-request';
         /**
          * The X-coordiante
          */
@@ -117,16 +124,6 @@ declare namespace console {
         //% shim=.y
         public y: number;
 
-        /*public gettemp(){
-        import request = require('request');
-        request.get('http://10.255.255.1', {timeout: 1500}, (err:any) => {
-        console.log(err.code === 'ETIMEDOUT');
-        // Set to `true` if the timeout was a connection timeout, `false` or
-        // `undefined` otherwise.
-        console.log(err.connect === true);
-        process.exit(0);
-        });
-        }*/
         /**
          * Move the thing forward
          */
