@@ -11,7 +11,7 @@ namespace pxsim.sensors {
     //% weight = 90
     //% blockId=tempF block="Temperature"
     export function tempF(){
-        board().tempF.y+=1
+        //board().tempF.y+=
         board().updateView();
 
     }
@@ -19,12 +19,22 @@ namespace pxsim.sensors {
     //% blockId=humid block="Humidity"
     export async function humidityAsync(){
 
-    
+        
             const response = await fetch('http://api.wunderground.com/api/8f5846f4c43e4050/conditions/q/CO/Denver.json')
         
             const json = await response.json();
         
-            console.log(json.current_observation.temp_f)
+            console.log(json.current_observation.temp_f);
+            //board().updateView();
+            var h =  parseFloat(json.current_observation.temp_f);
+            console.log("in update function");
+            //var svg = d3.select("humid").transform.attr("cy",50);
+            d3.select("#humid_text").text(h);
+            d3.select("#humid_text").attr("y",200-h);
+            d3.select("#humid").attr("cy",200-h);
+            console.log("past update");
+           
+            
         }
        
        /* fetch('http://www.google.com/').then(function(response) {
