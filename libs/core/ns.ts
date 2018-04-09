@@ -17,14 +17,19 @@ namespace SensorSystem {
 }
 
 //% color=#00d4bb weight=95
-namespace sensors {
+namespace Sensors {
 
 }
+
+//% color=#DAA520 weight=94
+/*namespace SensorsStore {
+
+}*/
 
 //% color=#FF33F3 weight=90
-namespace Data {
+/*namespace Data {
 
-}
+}*/
 
 /**
  * Control flow
