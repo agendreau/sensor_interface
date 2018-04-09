@@ -18,4 +18,15 @@ declare const enum Hop {
     Astronomical
 }
 
+declare const enum SenSys {
+    //% block=Panda
+    Panda,
+    //% block=Tiger
+    Tiger,
+    //% block=Dolphin
+    Dolphin,
+    //% block=Gorilla
+    Gorilla
+}
+
 
