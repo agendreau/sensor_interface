@@ -24,8 +24,8 @@ namespace pxsim {
         public element : SVGSVGElement;
         public spriteTempF: SVGCircleElement;
         public spriteHumidity: SVGCircleElement
-        public tempF : Sprite;
-        public humidity : Sprite;
+       // public tempF : Sprite;
+        //public humidity : Sprite;
         
         constructor() {
             super();
@@ -50,15 +50,16 @@ namespace pxsim {
             //document.body.appendChild(this.element);
                   //Circle Data Set
   var circleData = [
-    { "cx": 20, "cy": 100, "radius": 20, "color" : "green" , "id":"humid"},
-    { "cx": 70, "cy": 100, "radius": 20, "color" : "purple", "id":"temp" },
-    { "cx": 120, "cy": 100, "radius": 20, "color" : "blue","id":"pressure" },
-    { "cx": 170, "cy": 100, "radius": 20, "color" : "red","id":"altitude" }];
+    { "cx": 75, "cy": 150, "radius": 50, "color" : "green" , "id":"humid"},
+    { "cx": 200, "cy": 150, "radius": 50, "color" : "purple", "id":"temp" },
+    //{ "cx": 120, "cy": 100, "radius": 20, "color" : "blue","id":"pressure" },
+    //{ "cx": 170, "cy": 100, "radius": 20, "color" : "red","id":"altitude" }
+];
   
   //Create the SVG Viewport
   var svgContainer = d3.select("body").append("svg")
-                                       .attr("width",200)
-                                       .attr("height",200);
+                                       .attr("width",300)
+                                       .attr("height",300);
  
  //Add circles to the svgContainer
  var circles = svgContainer.selectAll("circle").data(circleData).enter().append("circle");
@@ -78,7 +79,7 @@ var text = svgContainer.selectAll("text").data(circleData).enter().append("text"
 var textLabels = text
                  .attr("x", function(d) { return d.cx; })
                  .attr("y", function(d) { return d.cy; })
-                 .text( function (d) { return d.cx; })
+                 .text( function (d) { return ""; })
                  .attr( "id", function(d) {return d.id+"_text";})
                  .attr("font-family", "sans-serif")
                  .attr("font-size", "20px")
