@@ -49,34 +49,34 @@ namespace pxsim {
             document.body.innerHTML = ''; // clear children
             //document.body.appendChild(this.element);
                   //Circle Data Set
-  var circleData = [
+  /*var circleData = [
     { "cx": 75, "cy": 150, "radius": 50, "color" : "green" , "id":"humid"},
     { "cx": 200, "cy": 150, "radius": 50, "color" : "purple", "id":"temp" },
     //{ "cx": 120, "cy": 100, "radius": 20, "color" : "blue","id":"pressure" },
     //{ "cx": 170, "cy": 100, "radius": 20, "color" : "red","id":"altitude" }
-];
+];*/
   
   //Create the SVG Viewport
-  var svgContainer = d3.select("body").append("svg")
+  /*var svgContainer = d3.select("body").append("svg")
                                        .attr("width",300)
-                                       .attr("height",300);
+                                       .attr("height",300);*/
  
  //Add circles to the svgContainer
- var circles = svgContainer.selectAll("circle").data(circleData).enter().append("circle");
+ //var circles = svgContainer.selectAll("circle").data(circleData).enter().append("circle");
  
  //Add the circle attributes
- var circleAttributes = circles
+ /*var circleAttributes = circles
                       .attr("cx", function (d) { return d.cx; })
                         .attr("cy", function (d) { return d.cy; })
                       .attr("r", function (d) { return d.radius; })
                        .style("fill", function (d) { return d.color; })
-                       .attr("id",function (d) {return d.id;});
+                       .attr("id",function (d) {return d.id;});*/
 
 //Add the SVG Text Element to the svgContainer
-var text = svgContainer.selectAll("text").data(circleData).enter().append("text");
+//var text = svgContainer.selectAll("text").data(circleData).enter().append("text");
 
 //Add SVG Text Element Attributes
-var textLabels = text
+/*var textLabels = text
                  .attr("x", function(d) { return d.cx; })
                  .attr("y", function(d) { return d.cy; })
                  .text( function (d) { return ""; })
@@ -85,15 +85,15 @@ var textLabels = text
                  .attr("font-size", "20px")
                  .attr("fill", "black")
                  .style("text-anchor", "middle");
-
+*/
             return Promise.resolve();
-        }       
+       // }       
         
-        updateView() {
+       /* updateView() {
             console.log("in update function");
             //var svg = d3.select("humid").transform.attr("cy",50);
             d3.select("#humid_text").attr('fill', "white");
-            console.log("past update");
+            console.log("past update");*/
            
            /* var circleData = [
                 { "cx": 20, "cy": 50, "radius": 20, "color" : "green" },
