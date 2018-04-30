@@ -2,7 +2,9 @@
 
 //import * as WebRequest from 'web-request';
 
-var sensor = '192.168.4.63';
+//var sensor = '192.168.4.63';
+var sensor = "02fb20304a73bce1";
+var state_city = "CO/Denver";
 
 
 //namespace pxsim.sensorsStore {
@@ -138,44 +140,64 @@ namespace pxsim.Sensors {
     
     //% weight = 90
     //% blockId=humidity1 block="Humidity"
-    export async function humidityAsync(){
-        console.log(sensor)
-        //const response = await fetch('https://api.wunderground.com/api/'+sensor+'/conditions/q/CO/Denver.json')
-        const response = await fetch(sensor+'/dev/sensors?sensor=bme280&sample=humidity')
 
+      
+
+    export async function humidityAsync(){
+        var apiUrl = window.location.origin;
+        console.log(apiUrl);
+        var re = "%"
+        console.log(sensor);
+        const response = await fetch('https://api.wunderground.com/api/'+sensor+'/conditions/q/'+state_city+'.json')
+        //const response = await fetch('http://'+sensor+'/dev/sensors?sensor=bme280&sample=humidity')
+        //const response = await fetch(apiUrl+'/helloworld');
+        //const json = await response.json();
+        //var h = json.value;
+        //console.log(h);
+        
+        
             const json = await response.json();
             
-            console.log(json.value);
-            //console.log(json.current_observation.relative_humidity.replace(re,''));
+            //console.log(json.value);
+            console.log(json.current_observation.relative_humidity.replace(re,''));
             //board().updateView();
-            var h =  parseFloat(json.value);
+            //var h =  parseFloat(json.value);
+            var h = parseFloat(json.current_observation.relative_humidity.replace(re,''))
             console.log("in update function");
             //var svg = d3.select("humid").transform.attr("cy",50);
             d3.select("#humid_text").text("Humid: \n" + h);
-            /*d3.select("#humid_text").attr("y",200-h);
-            d3.select("#humid").attr("cy",200-h);*/
+            //d3.select("#humid_text").attr("y",200-h);
+            //d3.select("#humid").attr("cy",200-h);
             console.log("past update");
 
-            return h
+            return h;
     }
 
     //% weight = 85
     //% blockId=tempF1 block="Temperature"
     export async function tempFAsync(){
         console.log(sensor);
-           //const response = await fetch('https://api.wunderground.com/api/'+sensor+'/conditions/q/CO/Denver.json')
-           const response = await fetch(sensor+'/dev/sensors?sensor=bme280&sample=temperaturef')
+           const response = await fetch('https://api.wunderground.com/api/'+sensor+'/conditions/q/'+state_city+'.json')
+           //const response = await fetch('http://'+sensor+'/dev/sensors?sensor=bme280&sample=temperaturef')
 
             const json = await response.json();
+           
         
-            console.log(json.value);
+            console.log(json.current_observation.temp_f);
             //board().updateView();
-            var t =  parseFloat(json.value);
+            var t =  parseFloat(json.current_observation.temp_f);
             console.log("in update function");
             //var svg = d3.select("humid").transform.attr("cy",50);
+           
+        
+            //console.log(json.value);
+            //board().updateView();
+            //var t =  parseFloat(json.value);
+            //console.log("in update function");
+            //var svg = d3.select("humid").transform.attr("cy",50);
             d3.select("#temp_text").text("Temp: \n" + t);
-            /*d3.select("#temp_text").attr("y",200-t);
-            d3.select("#temp").attr("cy",200-t);*/
+            //d3.select("#temp_text").attr("y",200-t);
+            //d3.select("#temp").attr("cy",200-t);
             console.log("past update");
 
             return t;
@@ -203,9 +225,9 @@ namespace pxsim.SensorSystem {
  
 
     //% weight = 90
-    //% blockId=connect block="Sensor System %name"
+    //% blockId=connect block="Connect to %name Sensor System"
 
-    export function download(filename:string, text:string) {
+    /*export function download(filename:string, text:string) {
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
         element.setAttribute('download', filename);
@@ -216,27 +238,27 @@ namespace pxsim.SensorSystem {
         element.click();
     
         document.body.removeChild(element);
-    }
+    }*/
   
     
     
     export function connect(name: SenSys){
         switch(name) {
         case SenSys.Panda:
-            //sensor = "02fb20304a73bce1";
-            sensor = '192.168.4.63';
+            sensor = "02fb20304a73bce1";
+            //sensor = '192.168.4.63';
             break;
         case SenSys.Tiger:
-            //sensor = "434d63a333987665";
-            sensor = '192.168.4.63';
+            sensor = "434d63a333987665";
+            //sensor = '192.168.4.63';
             break;
         case SenSys.Dolphin: 
-            //sensor = "fc51f1c83be0df29";
-            sensor = '192.168.4.63';
+            sensor = "fc51f1c83be0df29";
+            //sensor = '192.168.4.63';
             break;
        case SenSys.Gorilla:
-            //sensor = "b379867083543cc0";
-            sensor = '192.168.4.63';
+            sensor = "b379867083543cc0";
+            //sensor = '192.168.4.63';
             break;
         }
         
@@ -251,9 +273,9 @@ namespace pxsim.SensorSystem {
     }*/
 
     //% weight = 85
-    //% blockId=upload block="Upload %filename"
+    //% blockId=upload block="Store Data to %filename"
     export async function uploadAsync(filename: string){
-        await fetch('192.168.4.63/datalog.csv')
+        //await fetch('192.168.4.63/datalog.csv')
 
     }
 
@@ -273,9 +295,32 @@ namespace pxsim.SensorSystem {
     }*/
 
       //% weight 75
-    //% blockId=writeValue block="Store Value %total"
+    //% blockId=writeValue block="Get Value %total"
     export function writeValue(reading: number){
 
+    }
+
+      //% weight 70
+    //% blockId=pickCity block="Pick City %name"
+    export function pickCity(name: Cities){
+        switch(name) {
+            case Cities.Denver:
+                state_city = "CO/Denver";
+                break;
+            case Cities.Boston:
+                 state_city = "MA/Boston";
+                break;
+            case Cities.Seattle:
+                state_city = "WA/Seattle" 
+                break;
+           case Cities.Houston:
+                state_city = "TX/Houston"
+                break;
+            case Cities.Chicago:
+                state_city = "IL/Chicago"
+                break;
+            }
+            
     }
 
 

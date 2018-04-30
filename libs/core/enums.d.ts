@@ -30,3 +30,15 @@ declare const enum SenSys {
 }
 
 
+declare const enum Cities {
+    //% block=Denver
+    Denver,
+    // % block = Boston
+    Boston,
+    // % block = Seattle
+    Seattle,
+    // % block = Chicago
+    Chicago,
+    // % block = Houston
+    Houston
+}
